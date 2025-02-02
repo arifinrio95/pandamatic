@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datasans Pandamatic AI</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="title-section">
+                <div class="logo-container">
+                    <i class="fas fa-chart-network"></i>
+                </div>
+                <h1>Datasans Pandamatic AI</h1>
+            </div>
+            <p>Transform complex data into actionable intelligence with state-of-the-art AI analytics</p>
+            <div class="feature-pills">
+                <div class="feature-pill">
+                    <i class="fas fa-chart-bar fa-sm"></i>&nbsp; Data Analysis
+                </div>
+                <div class="feature-pill">
+                    <i class="fas fa-brain fa-sm"></i>&nbsp; Machine Learning
+                </div>
+                <div class="feature-pill">
+                    <i class="fas fa-chart-pie fa-sm"></i>&nbsp; Visualization
+                </div>
+                <div class="feature-pill">
+                    <i class="fas fa-lightbulb fa-sm"></i>&nbsp; Insights
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="app-container">
+        <!-- Side Navigation -->
+        <nav class="side-nav">
+            <div class="upload-zone" id="dropZone">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drop your CSV file here<br>or click to browse</p>
+                <input type="file" id="csvFile" accept=".csv" style="display: none;">
+            </div>
+            <div class="dataset-info" id="datasetInfo">
+                <h3><i class="fas fa-database"></i> Dataset Overview</h3>
+                <div id="datasetStats"></div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Tabs Navigation -->
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="preview">
+                    <i class="fas fa-table"></i> Data Preview
+                </button>
+                <button class="tab-btn" data-tab="analysis">
+                    <i class="fas fa-robot"></i> AI Analysis
+                </button>
+                <button class="tab-btn" data-tab="insights">
+                    <i class="fas fa-lightbulb"></i> Insights
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Preview Tab -->
+                <div class="tab-pane active" id="previewTab">
+                    <div class="data-preview-wrapper">
+                        <div id="preview"></div>
+                    </div>
+                </div>
+
+                <!-- Analysis Tab -->
+                <div class="tab-pane" id="analysisTab">
+                    <div class="analysis-tools">
+                        <div class="prompt-section">
+                            <div class="prompt-suggestions">
+                                <button class="suggestion-chip">Show correlation matrix</button>
+                                <button class="suggestion-chip">Create histogram of numeric columns</button>
+                                <button class="suggestion-chip">Calculate basic statistics</button>
+                                <button class="suggestion-chip">Analyze trends</button>
+                            </div>
+                            <div class="prompt-input-wrapper">
+                                <textarea 
+                                    class="prompt-input" 
+                                    id="prompt" 
+                                    placeholder="Ask anything about your data..."></textarea>
+                                <button class="submit-btn" onclick="processPrompt()">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="result" class="analysis-results"></div>
+                    </div>
+                </div>
+
+                <!-- Insights Tab -->
+                <div class="tab-pane" id="insightsTab">
+                    <div class="auto-insights" id="autoInsights">
+                        <!-- Auto-generated insights will be placed here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
